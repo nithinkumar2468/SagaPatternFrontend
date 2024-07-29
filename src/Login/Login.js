@@ -2,7 +2,7 @@ import { useNavigate } from "react-router-dom";
 import React, { useState } from "react";
 import axios from "axios";
 
-export default function Login1() {
+export default function Login() {
   const handleClickL = () => navigate("/");
 
   const [email, setemail] = useState("");
@@ -11,9 +11,6 @@ export default function Login1() {
 
   async function usermenu(event) {
     event.preventDefault();
-
-    window.localStorage.setItem("isLoggedIn", email);
-    console.log(window.localStorage.getItem("isLoggedIn"));
 
     try {
       await axios
@@ -50,7 +47,7 @@ export default function Login1() {
         <div className="sm:mx-auto sm:w-full sm:max-w-sm">
           <img
             className="mx-auto h-10 w-auto"
-            src="../bogo.jpg"
+            src="./bogo.jpg"
             alt="Your Company"
             style={{ height: "80px", maxWidth: "150px", borderRadius: "8px" }}
           />
@@ -66,15 +63,16 @@ export default function Login1() {
                   htmlFor="email"
                   className="block text-sm font-medium leading-6 text-gray-900"
                 >
-                  <h3>Username</h3>
+                  <h3>User Name</h3>
                 </label>
               </div>
               <div className="input-group mb-3">
                 <input
-                  id="username"
-                  name="usrename"
+                  id="email"
+                  name="email"
                   type="number"
                   required
+                  autoComplete=""
                   onChange={(event) => {
                     setemail(event.target.value);
                   }}
@@ -97,6 +95,7 @@ export default function Login1() {
                   id="password"
                   name="password"
                   type="password"
+                  autoComplete=""
                   required
                   onChange={(event) => {
                     setPassword(event.target.value);
@@ -111,7 +110,7 @@ export default function Login1() {
                 onClick={usermenu}
                 className="flex w-full justify-center rounded-md bg-blue-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
               >
-                Login
+                Login as User
               </button>
             </div>
           </form>

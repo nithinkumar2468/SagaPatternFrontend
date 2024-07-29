@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import { useLocation } from "react-router-dom";
 
 export default function ViewOrders() {
-  const vendor = window.localStorage.getItem("isLoggedIn");
+  let location=useLocation();
 
   const [useraddress, setUserAddress] = useState("");
 
@@ -11,7 +12,7 @@ export default function ViewOrders() {
   }, []);
 
   const fetchOrders = () => {
-    fetch(`http://localhost:8082/getall/${vendor}`)
+    fetch(`http://localhost:8082/getall/${location.state.email}`)
       .then((res) => res.json())
       .then((data) => setUserAddress(data));
   };
