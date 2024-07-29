@@ -1,0 +1,28 @@
+ul {
+    text-decoration: none;
+    display: inline;
+    margin: 0;
+    padding: 0;
+  }
+  
+  ul li {display: inline-block;}
+  ul li:hover {background: #FBFBFB; }
+  ul li:hover ul {display: block;}
+  ul li ul {
+    position: absolute;
+    width: 140px;
+    height: 400px;
+    display: none;
+  }
+  ul li ul li { 
+    background: #FBFBFB; 
+    display: block;
+    
+  }
+  ul li ul li a {
+    display:block !important;
+    text-decoration: none;
+    height: 50px;
+    text-align: center;
+} 
+  ul li ul li:hover {background: #eee;}
