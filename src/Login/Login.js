@@ -71,6 +71,7 @@ export default function Login() {
                   id="email"
                   name="email"
                   type="number"
+                  placeholder="enter hotelId"
                   required
                   autoComplete=""
                   onChange={(event) => {
