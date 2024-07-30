@@ -12,7 +12,7 @@ export default function Login1() {
   const [user, setUser] = useState([]);
 
   useEffect(() => {
-    if (user!==null && user !==undefined) {
+    if (user.length>0) {
       fetch(`http://localhost:8081/getuseremail/${email}`)
         .then((res) => res.json())
         .then((data) => setUser(data))
@@ -22,11 +22,14 @@ export default function Login1() {
     }
   }, [email]);
 
-  console.log(user);
   window.localStorage.setItem("isLoggedIn", user.userId);
 
   async function usermenu(event) {
     event.preventDefault();
+    fetch(`http://localhost:8081/getuseremail/${email}`)
+        .then((res) => res.json())
+        .then((data) => setUser(data))
+        window.localStorage.setItem("isLoggedIn", user.userId);
 
     try {
       await axios
