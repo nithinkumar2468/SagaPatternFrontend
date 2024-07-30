@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import { useParams } from "react-router-dom";
-import { useNavigate } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import Navbar from "../Login/Navbar";
 
 const BuynowProduct = () => {
@@ -41,9 +40,7 @@ const BuynowProduct = () => {
   useEffect(() => {
     const loadProduct = async () => {
       try {
-        const result = await axios.get(
-          `http://localhost:8082/get/product/${id}`
-        );
+        const result = await axios.get(`http://localhost:8082/get/product/${id}`);
         setUser(result.data);
         setInput((prevInput) => ({
           ...prevInput,
@@ -69,23 +66,23 @@ const BuynowProduct = () => {
   }, [num, user.price]);
 
   const incrementCounter = () => {
-    setNum(num + 1);
+    setNum((prevNum) => prevNum + 1);
   };
 
   const decrementCounter = () => {
-    if (num > 1) {
-      setNum(num - 1);
+    setNum((prevNum) => (prevNum > 1 ? prevNum - 1 : 1));
+  };
+
+  const onSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      await axios.post(`http://localhost:8080/create`, input);
+      navigate("/viewproducts");
+    } catch (error) {
+      console.error("Error submitting order:", error);
+      alert("An error occurred while placing your order. Please try again.");
     }
   };
-
-  const onSubmit = (e) => {
-    console.log(input);
-    e.preventDefault();
-    axios.post(`http://localhost:8080/create`, input);
-    navigate("/viewproducts");
-  };
-
-  console.log(input);
 
   return (
     <div>
@@ -107,10 +104,7 @@ const BuynowProduct = () => {
             <div className="container">
               <div className="row">
                 <div className="col">
-                  <label
-                    htmlFor="product"
-                    className="block text-sm font-medium leading-6 text-gray-900"
-                  >
+                  <label htmlFor="product" className="block text-sm font-medium leading-6 text-gray-900">
                     <h4>Product</h4>
                   </label>
                 </div>
@@ -120,10 +114,7 @@ const BuynowProduct = () => {
               </div>
               <div className="row">
                 <div className="col">
-                  <label
-                    htmlFor="hotel"
-                    className="block text-sm font-medium leading-6 text-gray-900"
-                  >
+                  <label htmlFor="hotel" className="block text-sm font-medium leading-6 text-gray-900">
                     <h4>Hotel</h4>
                   </label>
                 </div>
@@ -131,12 +122,21 @@ const BuynowProduct = () => {
                   <h4>{user.hotel.hotelName}</h4>
                 </div>
               </div>
+              {customer && customer.balance > 0 && (
+                <div className="row">
+                  <div className="col">
+                    <label htmlFor="wallet" className="block text-sm font-medium leading-6 text-gray-900">
+                      <h4>Wallet</h4>
+                    </label>
+                  </div>
+                  <div className="col">
+                    <h4>{customer.balance}</h4>
+                  </div>
+                </div>
+              )}
               <div className="row">
                 <div className="col">
-                  <label
-                    htmlFor="quantity"
-                    className="block text-sm font-medium leading-6 text-gray-900"
-                  >
+                  <label htmlFor="quantity" className="block text-sm font-medium leading-6 text-gray-900">
                     <h4>Quantity</h4>
                   </label>
                 </div>
@@ -144,28 +144,30 @@ const BuynowProduct = () => {
                   <div>
                     <h4>
                       <table>
-                        <tr>
-                          <td>
-                            <img
-                              src="/images/decrement.jpg"
-                              alt="down"
-                              className="arrow-up"
-                              onClick={decrementCounter}
-                              style={{ maxWidth: "30px" }}
-                            />
-                          </td>
-                          &nbsp;
-                          {num}&nbsp;
-                          <td>
-                            <img
-                              src="/images/cross.png"
-                              alt="up"
-                              className="arrow-up"
-                              onClick={incrementCounter}
-                              style={{ maxWidth: "30px" }}
-                            />
-                          </td>
-                        </tr>
+                        <tbody>
+                          <tr>
+                            <td>
+                              <img
+                                src="/images/decrement.jpg"
+                                alt="down"
+                                className="arrow-up"
+                                onClick={decrementCounter}
+                                style={{ maxWidth: "30px" }}
+                              />
+                            </td>
+                            &nbsp;
+                            {num}&nbsp;
+                            <td>
+                              <img
+                                src="/images/cross.png"
+                                alt="up"
+                                className="arrow-up"
+                                onClick={incrementCounter}
+                                style={{ maxWidth: "30px" }}
+                              />
+                            </td>
+                          </tr>
+                        </tbody>
                       </table>
                     </h4>
                   </div>
@@ -173,10 +175,7 @@ const BuynowProduct = () => {
               </div>
               <div className="row">
                 <div className="col">
-                  <label
-                    htmlFor="price"
-                    className="block text-sm font-medium leading-6 text-gray-900"
-                  >
+                  <label htmlFor="price" className="block text-sm font-medium leading-6 text-gray-900">
                     <h4>Price</h4>
                   </label>
                 </div>
@@ -185,10 +184,7 @@ const BuynowProduct = () => {
                 </div>
               </div>
               <hr />
-              <div
-                className="row"
-                style={{ backgroundColor: "#f0f2f2", height: "50px" }}
-              >
+              <div className="row" style={{ backgroundColor: "#f0f2f2", height: "50px" }}>
                 <div className="col">
                   <h3 style={{ color: "#cc3300" }}>Order Total</h3>
                 </div>
@@ -198,13 +194,14 @@ const BuynowProduct = () => {
               </div>
               <hr />
               <br />
-              <button
-                type="submit"
-                onClick={onSubmit}
-                className="flex w-full justify-center rounded-md bg-yellow-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-yellow-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
-              >
-                Buy Now
-              </button>
+              <form onSubmit={onSubmit}>
+                <button
+                  type="submit"
+                  className="flex w-full justify-center rounded-md bg-yellow-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-yellow-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                >
+                  Buy Now
+                </button>
+              </form>
             </div>
           </div>
         </div>
