@@ -31,7 +31,7 @@ export default function Orders() {
           <thead>
             <tr>
               <th scope="col" style={{backgroundColor:"#66b3ff"}}>Order Id</th>
-              <th scope="col" style={{backgroundColor:"#66b3ff"}}>CustomerId</th>
+              <th scope="col" style={{backgroundColor:"#66b3ff"}}>HotelId</th>
               <th scope="col" style={{backgroundColor:"#66b3ff"}}>ProductId</th>
               <th scope="col" style={{backgroundColor:"#66b3ff"}}>Quantity</th>
               <th scope="col" style={{backgroundColor:"#66b3ff"}}>Amount</th>
@@ -45,7 +45,7 @@ export default function Orders() {
                 <th scope="row" key={index}>
                   {item.orderId}
                 </th>
-                <td>{item.customerId}</td>
+                <td>{item.hotelId}</td>
                 <td>{item.productId}</td>
                 <td>{item.quantity}</td>
                 <td>{item.price}</td>

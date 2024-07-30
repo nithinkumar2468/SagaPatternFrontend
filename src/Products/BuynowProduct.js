@@ -66,22 +66,22 @@ const BuynowProduct = () => {
   }, [num, user.price]);
 
   const incrementCounter = () => {
-    setNum((prevNum) => prevNum + 1);
+    setNum((previous) => previous + 1);
   };
 
   const decrementCounter = () => {
-    setNum((prevNum) => (prevNum > 1 ? prevNum - 1 : 1));
+    setNum((previous) => (previous > 1 ? previous - 1 : 1));
   };
 
   const onSubmit = async (e) => {
     e.preventDefault();
-    try {
+    if(customer && input.price>customer.balance){
+      window.alert("Wallet balance is less than total price.")
+    }
+    else{
       await axios.post(`http://localhost:8080/create`, input);
       navigate("/viewproducts");
-    } catch (error) {
-      console.error("Error submitting order:", error);
-      alert("An error occurred while placing your order. Please try again.");
-    }
+    }  
   };
 
   return (
