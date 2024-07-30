@@ -20,7 +20,6 @@ export default function Orders() {
       <div className="py-20 container">
         <div className=" py-10 row">
           <div className="col offset-md-20 border rounded p-4 mt-2 shadow">
-
             <div>
                 <div><h2>Orders</h2>
                 <hr></hr>
@@ -42,7 +41,7 @@ export default function Orders() {
           {useraddress.length > 0 ? (
               useraddress.map((item,index) => (
               <tr>
-                <th scope="row" key={index}>
+                <th scope="row" key={item.orderId}>
                   {item.orderId}
                 </th>
                 <td>{item.hotelId}</td>

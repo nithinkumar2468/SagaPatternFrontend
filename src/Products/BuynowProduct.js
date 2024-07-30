@@ -40,7 +40,9 @@ const BuynowProduct = () => {
   useEffect(() => {
     const loadProduct = async () => {
       try {
-        const result = await axios.get(`http://localhost:8082/get/product/${id}`);
+        const result = await axios.get(
+          `http://localhost:8082/get/product/${id}`
+        );
         setUser(result.data);
         setInput((prevInput) => ({
           ...prevInput,
@@ -75,13 +77,12 @@ const BuynowProduct = () => {
 
   const onSubmit = async (e) => {
     e.preventDefault();
-    if(customer && input.price>customer.balance){
-      window.alert("Wallet balance is less than total price.")
-    }
-    else{
+    if (customer && input.price > customer.balance) {
+      window.alert("Wallet balance is less than total price.");
+    } else {
       await axios.post(`http://localhost:8080/create`, input);
       navigate("/viewproducts");
-    }  
+    }
   };
 
   return (
@@ -104,7 +105,10 @@ const BuynowProduct = () => {
             <div className="container">
               <div className="row">
                 <div className="col">
-                  <label htmlFor="product" className="block text-sm font-medium leading-6 text-gray-900">
+                  <label
+                    htmlFor="product"
+                    className="block text-sm font-medium leading-6 text-gray-900"
+                  >
                     <h4>Product</h4>
                   </label>
                 </div>
@@ -114,7 +118,10 @@ const BuynowProduct = () => {
               </div>
               <div className="row">
                 <div className="col">
-                  <label htmlFor="hotel" className="block text-sm font-medium leading-6 text-gray-900">
+                  <label
+                    htmlFor="hotel"
+                    className="block text-sm font-medium leading-6 text-gray-900"
+                  >
                     <h4>Hotel</h4>
                   </label>
                 </div>
@@ -125,7 +132,10 @@ const BuynowProduct = () => {
               {customer && customer.balance > 0 && (
                 <div className="row">
                   <div className="col">
-                    <label htmlFor="wallet" className="block text-sm font-medium leading-6 text-gray-900">
+                    <label
+                      htmlFor="wallet"
+                      className="block text-sm font-medium leading-6 text-gray-900"
+                    >
                       <h4>Wallet</h4>
                     </label>
                   </div>
@@ -136,7 +146,10 @@ const BuynowProduct = () => {
               )}
               <div className="row">
                 <div className="col">
-                  <label htmlFor="quantity" className="block text-sm font-medium leading-6 text-gray-900">
+                  <label
+                    htmlFor="quantity"
+                    className="block text-sm font-medium leading-6 text-gray-900"
+                  >
                     <h4>Quantity</h4>
                   </label>
                 </div>
@@ -175,7 +188,10 @@ const BuynowProduct = () => {
               </div>
               <div className="row">
                 <div className="col">
-                  <label htmlFor="price" className="block text-sm font-medium leading-6 text-gray-900">
+                  <label
+                    htmlFor="price"
+                    className="block text-sm font-medium leading-6 text-gray-900"
+                  >
                     <h4>Price</h4>
                   </label>
                 </div>
@@ -184,7 +200,10 @@ const BuynowProduct = () => {
                 </div>
               </div>
               <hr />
-              <div className="row" style={{ backgroundColor: "#f0f2f2", height: "50px" }}>
+              <div
+                className="row"
+                style={{ backgroundColor: "#f0f2f2", height: "50px" }}
+              >
                 <div className="col">
                   <h3 style={{ color: "#cc3300" }}>Order Total</h3>
                 </div>
