@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { Link } from "react-router-dom";
 import "./viewproducts.css";
 import Navbar from "../Login/Navbar";
 
@@ -7,7 +7,7 @@ export default function ViewProducts() {
   const [product, setProducts] = useState([]);
 
   useEffect(() => {
-    fetch("http://localhost:8082/getall/products")
+    fetch("http://localhost:8082/products")
       .then((res) => res.json())
       .then((data) => setProducts(data));
   }, []);
@@ -23,11 +23,10 @@ export default function ViewProducts() {
               <div className="card">
                 <div className="card-body">
                   <div className="card-img-actions">
+                        
                     <img
-                      src="https://res.cloudinary.com/dxfq3iotg/image/upload/v1562074043/234.png"
-                      className="card-img img-fluid"
-                      width="96"
-                      height="350"
+                      src={`/images/${item.item.toLowerCase().replace(/\s/g, "")}.jpg`}
+                      style={{ width: "400px", height: "200px" }}
                       alt=""
                     />
                   </div>

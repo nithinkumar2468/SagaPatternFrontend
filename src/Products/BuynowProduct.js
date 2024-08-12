@@ -88,7 +88,7 @@ const BuynowProduct = () => {
   return (
     <div>
       <Navbar />
-      <div className="container py-20">
+      <div className="container py-40">
         <div
           className="card"
           style={{
@@ -102,6 +102,7 @@ const BuynowProduct = () => {
             style={{ width: "400px", height: "500px", padding: "10px" }}
           >
             <h3>Order Summary</h3>
+            <hr></hr>
             <div className="container">
               <div className="row">
                 <div className="col">
@@ -153,7 +154,7 @@ const BuynowProduct = () => {
                     <h4>Quantity</h4>
                   </label>
                 </div>
-                <div className="col">
+                <div className="col" style={{paddingLeft:"80px"}}>
                   <div>
                     <h4>
                       <table>
