@@ -9,7 +9,7 @@ export default function ViewOrders() {
 
   useEffect(() => {
     fetchOrders();
-  }, []);
+  });
 
   const fetchOrders = () => {
     fetch(`http://localhost:8082/getall/${location.state.email}`)
