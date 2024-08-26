@@ -19,13 +19,12 @@ export default function ProductsByHotel() {
         <Navbar />
         <div className="container d-flex justify-content-center mt-50 mb-50 py-20">
           <div className="row">
-            <h1 style={{ textAlign: "center", color: "#cc3300" }}>Products</h1>
+            <h1 style={{ textAlign: "center", color: "#cc3300" }}>{product.map((item)=>(<h1>{item.hotel.hotelName}</h1>))}</h1>
             {product.map((item, index) => (
               <div className="col-md-3 mt-4">
                 <div className="card">
                   <div className="card-body">
-                    <div className="card-img-actions">
-                          
+                    <div className="card-img-actions">   
                       <img
                         src={`/images/${item.item.toLowerCase().replace(/\s/g, "")}.jpg`}
                         style={{ width: "400px", height: "200px" }}

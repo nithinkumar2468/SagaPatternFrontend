@@ -12,15 +12,30 @@ export default function ViewProductsByCategory() {
     fetch(`http://localhost:8082/productsbycategory/${location.state.from}`)
       .then((res) => res.json())
       .then((data) => setProducts(data));
+      capitalize();
   }, []);
+
+    function capitalize() {
+      return location.state.from.charAt(0).toUpperCase() + location.state.from.slice(1);
+    }
+
+  const caps = location.state.from.split(" ").map(capitalize).join(" ");
+
   return (
     <div>
       <div>
         <Navbar />
         <div className="container d-flex justify-content-center mt-50 mb-50">
           <div className="row">
-            <h1 style={{ textAlign: "center", color: "#cc3300" }}>Products</h1>
-            <h1>{location.state.from}</h1>
+            <h1 style={{ color: "#cc3300", fontFamily: "fantasy" }}>
+              {caps}
+            </h1>
+
+            <h3 style={{ fontFamily: "impact" }}>
+              {product.length} products to explore
+            </h3>
+            <hr></hr>
+
             {product.map((item, index) => (
               <div className="col-md-3 mt-4">
                 <div className="card">

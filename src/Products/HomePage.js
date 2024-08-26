@@ -19,16 +19,25 @@ export default function HomePage() {
 
       <Slider />
 
-      <h2>Top restaurant chains</h2>
+      <h2 style={{fontFamily:"impact"}}>Top restaurant chains</h2>
       <div className="container d-flex justify-content-center mt-50 mb-50">
         <div className="row">
           {product.map((item, index) => (
             <div className="col-md-3 mt-4">
               <div className="card">
-                <div className="card-body bg-light text-center">
+              <div className="card-img-actions">
+                      <img
+                        src={`/images/${item.hotelName
+                          .toLowerCase()
+                          .replace(/\s/g, "")}.jpg`}
+                        style={{ width: "400px", height: "300px",borderRadius:"20px" }}
+                        alt=""
+                      />
+                    </div>
+                <div className="card-body">
                   <div className="mb-2">
-                    <Link style={{}} to={`/productsbyhotel/${item.hotelId}`}>
-                      <h4>{item.hotelName}</h4>
+                    <Link to={`/productsbyhotel/${item.hotelId}`}>
+                      <h4 style={{ fontFamily:"Arial",color:"black",fontSize:"1vw"}}>{item.hotelName}</h4>
                     </Link>
                   </div>
                 </div>

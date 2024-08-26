@@ -15,7 +15,7 @@ export default function ViewProducts() {
   return (
     <div>
       <Navbar />
-      <div className="container d-flex justify-content-center mt-50 mb-50 py-20">
+      <div className="container d-flex justify-content-center mt-50 mb-50">
         <div className="row">
           <h1 style={{ textAlign: "center", color: "#cc3300" }}>Products</h1>
           {product.map((item, index) => (

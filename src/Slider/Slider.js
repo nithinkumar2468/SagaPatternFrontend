@@ -7,7 +7,7 @@ export default function Slider() {
     <div className="container" style={{ position: "relative" }}>
       <div className="row">
         <div className="col-md-12">
-          <h2>What's on your mind?</h2>
+          <h2 style={{fontFamily:"fantasy"}}>What's on your mind?</h2>
           <div
             id="myCarousel"
             className="carousel slide"
@@ -81,10 +81,10 @@ export default function Slider() {
                       <div className="img-box">
                         <NavLink
                           to="/viewproductsbycategory"
-                          state={{ from: "pureveg" }}
+                          state={{ from: "dessert" }}
                         >
                           <img
-                            src="/images/PureVeg.jpg"
+                            src="/images/Desserts.jpg"
                             className="img-fluid"
                             style={{ maxHeight: "200px" }}
                             alt=""
@@ -102,10 +102,10 @@ export default function Slider() {
                       <div className="img-box">
                         <NavLink
                           to="/viewproductsbycategory"
-                          state={{ from: "dessert" }}
+                          state={{ from: "tiffins" }}
                         >
                           <img
-                            src="/images/Desserts.jpg"
+                            src="/images/southindian.jpg"
                             className="img-fluid"
                             style={{ maxHeight: "200px" }}
                             alt=""

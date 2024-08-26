@@ -22,7 +22,7 @@ export default function Orders() {
         ];
 
         const productPromises = productIds.map((id) =>
-          fetch(`http://localhost:8082/get/product/${id}`).then((res) =>
+          fetch(`http://localhost:8082/product/${id}`).then((res) =>
             res.json()
           )
         );

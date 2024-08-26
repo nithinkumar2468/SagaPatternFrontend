@@ -41,7 +41,7 @@ const BuynowProduct = () => {
     const loadProduct = async () => {
       try {
         const result = await axios.get(
-          `http://localhost:8082/get/product/${id}`
+          `http://localhost:8082/product/${id}`
         );
         setUser(result.data);
         setInput((prevInput) => ({
@@ -209,11 +209,11 @@ const BuynowProduct = () => {
                   <h3 style={{ color: "#cc3300" }}>Order Total</h3>
                 </div>
                 <div className="col" style={{ color: "#cc3300" }}>
-                  <h2>&nbsp;&nbsp;&nbsp;&nbsp;₹{input.price}.00/-</h2>
+                  <h1>₹{input.price}.00/-</h1>
                 </div>
               </div>
               <hr />
-              <br />
+              
               <form onSubmit={onSubmit}>
                 <button
                   type="submit"
