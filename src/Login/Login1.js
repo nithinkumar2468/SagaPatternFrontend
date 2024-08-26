@@ -35,7 +35,7 @@ export default function Login1() {
       } else if (message === "Login Success") {
         window.localStorage.setItem("isLoggedIn", JSON.stringify(user?.userId));
 
-        navigate("/viewproducts", {
+        navigate("/homepage", {
           state: { email, password },
         });
       } else {
